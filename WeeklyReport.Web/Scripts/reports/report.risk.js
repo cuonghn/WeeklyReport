@@ -14,10 +14,15 @@ Define("Report.Risk", {
 
             self.newLevel = ko.observable('');
             self.newDesc = ko.observable('');
-            self.canAdd = ko.observable(false);
-
-            self.addMore = function () {
-                self.canAdd(!self.canAdd());
+            self.expand = ko.observable(false);
+            self.canAdd = ko.computed(function () {
+                return self.newLevel().length > 0 && self.newDesc().length > 0;
+            });
+            self.addNewText = ko.computed(function () {
+                return self.expand() ? 'Cancel' : 'Add New';
+            });
+            self.toggleForm = function () {
+                self.expand(!self.expand());
             };
 
             self.addNew = function () {
@@ -68,7 +73,9 @@ Define("Report.Risk", {
             self.Level = item.Level;
             self.Description = item.Description;
             self.EditMode = ko.observable(false);
-
+            self.editText = ko.computed(function () {
+                return self.EditMode() ? 'Cancel' : 'Edit';
+            });
             self.switchMode = function () {
                 self.EditMode(!self.EditMode());
             };

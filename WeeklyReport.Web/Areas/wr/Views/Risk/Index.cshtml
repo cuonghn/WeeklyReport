@@ -4,7 +4,7 @@
 }
 
 <h2>Manage Risk Levels</h2>
-<table>
+<table id="item-list">
     <thead>
         <tr style="text-align: left;">
             <th>Level</th>
@@ -14,27 +14,28 @@
     <tbody data-bind="foreach: Risks">
         <tr>
             <td style="width: 120px">
-                <div data-bind="text: Level, visible: !$data.EditMode()"></div>
-                <div data-bind="visible: $data.EditMode">
+                <div data-bind="text: Level, visible: !EditMode()"></div>
+                <div data-bind="if: EditMode">
                     <input data-bind="value: Level" style="width: 100px" />
                 </div>
             </td>
             <td style="width: 300px">
-                <div data-bind="text: Description, visible: !$data.EditMode()"></div>
-                <div data-bind="visible: $data.EditMode">
+                <div data-bind="text: Description, visible: !EditMode()"></div>
+                <div data-bind="if: EditMode">
                     <input data-bind="value: Description" style="width: 250px" />
                 </div>
             </td>
             <td>
-                <input type="button" data-bind="value: $data.EditMode() ? 'Cancel' : 'Edit', click: $data.switchMode" />
-                <input type="button" data-bind="value: 'Save', click: $data.saveChanges, visible: $data.EditMode" />
-                <input type="button" data-bind="value: 'Delete', click: $parent.deleteRisk, visible: !$data.EditMode()" />
+                <input type="button" data-bind="value: editText, click: switchMode" />
+                <input type="button" data-bind="value: 'Save', click: saveChanges, visible: EditMode" />
+                <input type="button" data-bind="value: 'Delete', click: $parent.deleteRisk, visible: !EditMode()" />
             </td>
         </tr>
     </tbody>
 </table>
-<input type="button" data-bind="value: canAdd() ? 'Cancel' : 'Add New', click: addMore" />
-<div data-bind="if: canAdd">
+<input type="button" data-bind="value: addNewText, click: toggleForm" />
+
+<div id="new-item" data-bind="if: expand">
     <form data-bind="submit: addNew">
     <div>
         <span class="span-5">Level</span>
@@ -50,10 +51,11 @@
     <br />
     <div>
         <span class="span-5">&nbsp;</span>
-        <input type="submit" data-bind="value: 'Submit', enable: (newLevel().length > 0 && newDesc().length > 0)" />
+        <input type="submit" data-bind="value: 'Submit', enable: canAdd" />
     </div>
     </form>
 </div>
+
 <script type="text/javascript" src="@Url.Content("~/Scripts/reports/report.risk.js")"></script>
 <script type="text/javascript">
     $(function () {
