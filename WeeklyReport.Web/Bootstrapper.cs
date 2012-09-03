@@ -12,6 +12,7 @@ namespace WeeklyReport.Web
       public static void Initialise()
       {
          var container = BuildUnityContainer();
+
          DependencyResolver.SetResolver(new UnityDependencyResolver(container));
       }
 
