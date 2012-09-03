@@ -1,0 +1,165 @@
+body
+{
+    font-size: .85em;
+    font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
+    color: #232323;
+    background-color: #fff;
+}
+
+header,
+footer,
+nav,
+section {
+    display: block;
+}
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+
+fieldset 
+{
+    border:1px solid #ddd;
+    padding:0 1.4em 1.4em 1.4em;
+    margin:0 0 1.5em 0;
+}
+
+legend 
+{
+    font-size:1.2em;
+    font-weight: bold;
+}
+
+textarea 
+{
+    min-height: 75px;
+}
+
+.editor-label 
+{
+    margin: 1em 0 0 0;
+}
+
+.editor-field 
+{
+    margin:0.5em 0 0 0;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    color: #ff0000;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+/* Report */
+.span-1
+{
+   float:left;
+   width:20px;
+}
+
+.span-2
+{
+   float:left;
+   width:40px;
+}
+
+.span-3
+{
+   float:left;
+   width:60px;
+}
+
+.span-4
+{
+   float:left;
+   width:80px;
+}
+
+.span-5
+{
+   float:left;
+   width:100px;
+}
+
+.span-6
+{
+   float:left;
+   width:120px;
+}
+
+.span-7
+{
+   float:left;
+   width:140px;
+}
+
+.span-8
+{
+   float:left;
+   width:160px;
+}
+
+.span-9
+{
+   float:left;
+   width:180px;
+}
+
+.span-10
+{
+   float:left;
+   width:200px;
+}
+
+.span-15
+{
+   float:left;
+   width: 300px;
+}
+
+.clear
+{
+   clear:both;
+}
+
+.hide
+{
+   display:none;
+}
+
+.highlight
+{
+   background-color: #b6ff00;
+}
+
+table
+{
+   border-bottom-width: 0px;
+   border-top-width: 0px;
+   border-left-width: 0px;
+   border-right-width: 0px;   
+}

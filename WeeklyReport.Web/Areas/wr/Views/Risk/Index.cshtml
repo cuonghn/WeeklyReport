@@ -1,0 +1,62 @@
+﻿@model WeeklyReport.Data.Entities.Risk
+@{
+    ViewBag.Title = "Risk";
+}
+
+<h2>Manage Risk Levels</h2>
+<table>
+    <thead>
+        <tr style="text-align: left;">
+            <th>Level</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: Risks">
+        <tr>
+            <td style="width: 120px">
+                <div data-bind="text: Level, visible: !$data.EditMode()"></div>
+                <div data-bind="visible: $data.EditMode">
+                    <input data-bind="value: Level" style="width: 100px" />
+                </div>
+            </td>
+            <td style="width: 300px">
+                <div data-bind="text: Description, visible: !$data.EditMode()"></div>
+                <div data-bind="visible: $data.EditMode">
+                    <input data-bind="value: Description" style="width: 250px" />
+                </div>
+            </td>
+            <td>
+                <input type="button" data-bind="value: $data.EditMode() ? 'Cancel' : 'Edit', click: $data.switchMode" />
+                <input type="button" data-bind="value: 'Save', click: $data.saveChanges, visible: $data.EditMode" />
+                <input type="button" data-bind="value: 'Delete', click: $parent.deleteRisk, visible: !$data.EditMode()" />
+            </td>
+        </tr>
+    </tbody>
+</table>
+<input type="button" data-bind="value: canAdd() ? 'Cancel' : 'Add New', click: addMore" />
+<div data-bind="if: canAdd">
+    <form data-bind="submit: addNew">
+    <div>
+        <span class="span-5">Level</span>
+        <input type="text" class="span-8" data-bind="value: newLevel, valueUpdate: 'afterkeydown', hasfocus: true" />
+    </div>
+    <div class="clear"></div>
+    <br />
+    <div>
+        <span class="span-5">Description</span>
+        <input type="text" class="span-8" data-bind="value: newDesc, valueUpdate: 'afterkeydown'" />
+    </div>
+    <div class="clear"></div>
+    <br />
+    <div>
+        <span class="span-5">&nbsp;</span>
+        <input type="submit" data-bind="value: 'Submit', enable: (newLevel().length > 0 && newDesc().length > 0)" />
+    </div>
+    </form>
+</div>
+<script type="text/javascript" src="@Url.Content("~/Scripts/reports/report.risk.js")"></script>
+<script type="text/javascript">
+    $(function () {
+        Report.Risk.load(this);
+    });
+</script>
